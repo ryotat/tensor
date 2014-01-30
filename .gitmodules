@@ -1,0 +1,3 @@
+[submodule "ConvexTensor"]
+	path = ConvexTensor
+	url = https://github.com/bernard24/ConvexTensor.git
