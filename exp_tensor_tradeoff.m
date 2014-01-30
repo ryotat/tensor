@@ -1,10 +1,4 @@
-% exp_tensor_tradeoff - 
-%
-% Syntax
-% 
-%
-% See also
-%
+% exp_tensor_tradeoff - runs an experiment for CP tensor
 % 
 % Reference
 % "Estimation of low-rank tensors via convex optimization"
@@ -26,7 +20,6 @@
 % This software is distributed under the MIT license. See license.txt
 
 
-% exp_tensor_tradeoff
 RandStream.setGlobalStream ...
          (RandStream('mt19937ar','seed',sum(100*clock)));
 
@@ -146,3 +139,25 @@ file_save=sprintf('result_tensor_tradeoff_%d_%d_%d_%d_%s_nrep=%d_sigma=%g_tol=%g
    
     
 end
+
+nm=length(methods);
+figure
+subplot(1,2,1);
+h=errorbar(trfrac'*ones(1,nm), shiftdim(mean(err)), ...
+           shiftdim(std(err)));
+set(h, 'linewidth', 2);
+set(gca,'fontsize', 14);
+xlabel('Fraction of observed elements');
+ylabel('Generalization error');
+legend(methods);
+grid on;
+
+subplot(1,2,2);
+h=errorbar(trfrac'*ones(1,nm), shiftdim(mean(time)), ...
+           shiftdim(std(time)));
+set(h, 'linewidth', 2);
+set(gca,'fontsize', 14);
+xlabel('Fraction of observed elements');
+ylabel('CPU time');
+legend(methods);
+grid on;
