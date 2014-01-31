@@ -20,6 +20,9 @@
 % This software is distributed under the MIT license. See license.txt
 
 
+addpath ConvexTensor/TotanaImpl
+addpath tensor_toolbox
+
 RandStream.setGlobalStream ...
          (RandStream('mt19937ar','seed',sum(100*clock)));
 
@@ -56,9 +59,7 @@ for ll=1:nsample
 file_save=sprintf('result_tensor_tradeoff_%d_%d_%d_%d_%s_nrep=%d_sigma=%g_tol=%g.mat',sz(1),sz(2),sz(3),dtrue,mstr,nrep,sigma,tol);
 
     for ii=1:length(trfrac)
-      ntr=round(nn*trfrac(ii));
-      ind=randperm(nn); ind=ind(1:ntr)';
-      ind_test=setdiff(1:prod(sz), ind);
+      [ind, ind_test]=randsplit(nn, trfrac(ii));
       [I,J,K]=ind2sub(sz,ind);
       yy=X0(ind)+sigma*randn(length(ind),1);
 
