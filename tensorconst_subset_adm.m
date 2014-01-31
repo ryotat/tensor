@@ -1,10 +1,10 @@
 % tensorconst_subset_adm - overlapped approach with more general unfolding
 %
 % Syntax
-%  [X,Z,A,fval,res] = tensorconst_subset_adm(X, I, yy, lambda, ...
+%  [X,Z,A,fval,res] = tensorconst_subset_adm(X, I, yy, lambda, indUnfold, varargin)
 %
 % See also
-%  tensorconst_adm
+%  tensorconst_adm, exp_completion_4d
 % 
 % Reference
 % "Estimation of low-rank tensors via convex optimization"
@@ -25,8 +25,7 @@
 % Copyright(c) 2010-2014 Ryota Tomioka
 % This software is distributed under the MIT license. See license.txt
 
-function [X,Z,A,fval,res] = tensorconst_subset_adm(X, I, yy, lambda, ...
-                                              indUnfold, varargin)
+function [X,Z,A,fval,res] = tensorconst_subset_adm(X, I, yy, lambda, indUnfold, varargin)
 
 opt=propertylist2struct(varargin{:});
 opt=set_defaults(opt, 'eta', [], 'gamma',[],'tol', 1e-3, 'verbose', 0,'yfact',10,'maxiter',2000);
