@@ -31,7 +31,7 @@ gitstring = gitlog;
 nrep=10;
 nsample = 1;
 sz=[10 10 5];
-trfrac=0.05:0.05:0.95;
+trfrac=0.5:0.05:0.95;
 sigma=0.001;
 tol=1e-3;
 
@@ -39,7 +39,7 @@ tol=1e-3;
 methods = {'constraint','l2ball'};
 
 
-methodParameters.gamma=0.001;                 % Parameter that ponders the importance of the regularizer. It can take any positive real value.
+methodParameters.gamma=1e-4;                 % Parameter that ponders the importance of the regularizer. It can take any positive real value.
 methodParameters.beta=0.1;                  % Parameter of ADMM (see eq. 9 in the paper). It can take any positive real value.
 % methodParameters.radius=1;                % radius of the \ell_2 ball (see Sec. 3 of the paper). In principle it can take any positive real value.
                                             % If it is not specified, it is estimated using last formula in pag. 6 in the paper.
@@ -136,7 +136,7 @@ file_save=sprintf('result_tensor_tradeoff_%d_%d_%d_%d_%s_nrep=%d_sigma=%g_tol=%g
 
 
 
-  save(file_save,'nrep', 'sz', 'dtrue', 'sigma', 'methods','err', 'trfrac','res','time','gitstring');
+  save(file_save,'nrep', 'sz', 'dtrue', 'sigma', 'methods','err', 'trfrac','res','time','gitstring','methodParameters');
    
     
 end
