@@ -33,7 +33,7 @@ if isnumeric(ind)
   nd=max(ndims(X),ind);
   ind = {ind, [ind+1:nd, 1:ind-1]};
 else
-  nd=max(cell2mat(foreach(@max,ind)));
+  nd=max(cellfun(@max,ind));
 end
 
 
